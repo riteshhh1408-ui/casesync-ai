@@ -53,10 +53,14 @@ create table public.evidence (
         ),
 
     file_name text,
-    storage_path text,
-    source_url text,
-    description text,
-    uploaded_at timestamptz default now()
+storage_path text,
+source_url text,
+description text,
+flagged boolean default false,
+flag_reason text,
+flagged_by uuid references auth.users(id),
+flagged_at timestamptz,
+uploaded_at timestamptz default now()
 );
 
 create table public.extracted_data (
